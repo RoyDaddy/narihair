@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
+    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">나리헤어</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    
+    
+    <!-- plugins start -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/vendor/bootstrap-datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
+    <script src="/js/common.js"></script>
+
+
+    <!-- plugins end -->
+    
+    <!-- CSS start -->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <!-- CSS end -->
+</head>
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+	   	<!-- Header start -->
+	    <th:block th:replace="/layout/slider"></th:block>
+	   	<!-- Header end -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- topbar start -->
+                <th:block th:replace="/layout/topbar"></th:block>
+                <!-- topbar end -->
+
+                <!-- content start -->
+                <th:block layout:fragment="content"></th:block>
+                <!-- content end -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- footer start -->
+            <th:block th:replace="/layout/footer"></th:block>
+            <!-- footer end -->
+        </div>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- JS start -->
+    <script src="/js/sb-admin-2.min.js"></script>
+    <!-- JS end -->
+</body>
+</html>

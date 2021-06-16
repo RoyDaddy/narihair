@@ -1,0 +1,37 @@
+/* text-align */
+.t-l{
+    text-align: left;
+}
+.t-c{
+    text-align: center;
+}
+.t-r{
+    text-align: right;
+}
+
+/* width */
+.w-10{
+    width: 10% !important;
+}
+.w-45{
+    width: 45% !important;
+}
+
+/* font */
+.f-b{
+    font-weight: bolder !important;
+}
+
+/* custom-pagination */
+.custom-pagination button:hover{
+    background-color: lightgray;
+}
+.custom-pagination button.active{
+    background-color: #40FEBB;
+}
+
+.page-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

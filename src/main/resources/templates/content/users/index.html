@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="/layout/layout">
+<head>
+    <title>이용자</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="form1">
+        <input type="hidden" id="page" name="page" th:value="${list.pageable.pageNumber}">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">이용자</h1>
+
+        <div class="card shadow mb-4 p-3">
+
+            <div class="row mb-4">
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="i1" class="f-b">이름</label>
+                            <input class="form-control" name="name" th:value="${param.name}" type="text" id="i1"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="i2" class="f-b">연락처</label>
+                            <input class="form-control" name="phone" th:value="${param.phone}" type="text" id="i2"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="i3" class="f-b">등록일</label>
+                            <div class="form-inline">
+                                <input class="form-control date w-45" name="startDate" th:value="${param.startDate}" type="text" id="i3"/>
+                                <i class="w-10 t-c">~</i>
+                                <input class="form-control date w-45" name="endDate" th:value="${param.endDate}" type="text" />
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <button type="button" onclick="search()" class="btn btn-primary w-100"> <i class="fas fa-search fa-sm"></i> 검색 </button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <th:block th:with="list=${list}, formId='form1'" th:include="layout/pagination :: pageInfo"></th:block>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th class="t-c">이름</th>
+                            <th class="t-c">연락처</th>
+                            <th class="t-c">예약횟수</th>
+                            <th class="t-c">등록일</th>
+                            <th class="t-c">메모</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="el : ${list}">
+                            <td class="t-c">[[${el.name}]]</td>
+                            <td class="t-c">[[${el.phone}]]</td>
+                            <td class="t-r">[[${el.resCount}]]</td>
+                            <td class="t-c">[[${el.createdAt}]]</td>
+                            <td class="t-l">[[${el.memo}]]</td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(list.content)}">
+                            <td colspan="5" class="t-c">No Data.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <th:block th:with="list=${list}, formId='form1'" th:include="layout/pagination :: pagination"></th:block>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    </form>
+    <script src="/js/users/index.js"></script>
+</th:block>
+</body>
+</html>

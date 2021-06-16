@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<th:block th:fragment="pagination">
+    <div class="flex-column t-c custom-pagination"
+         th:with="curPageSlice = ${list.pageable.pageNumber/10},
+                  lastPageSlice = ${list.totalPages/10},
+                  curPageNumber = ${list.pageable.pageNumber+1},
+                  prevPageNumber = ${list.pageable.pageNumber-1},
+                  nextPageNumber = ${list.pageable.pageNumber+1},
+                  isPrev = ${list.pageable.pageNumber != 0},
+                  isNext = ${list.pageable.pageNumber != list.totalPages-1}">
+        <button th:if="${curPageSlice != 0}" onclick="pageChange(0)" class="btn btn-default btn-sm">
+            <i class="fas fa-angle-double-left"></i>
+        </button>
+        <button th:if="${isPrev}" th:onclick="|pageChange(${prevPageNumber})|" class="btn btn-default btn-sm">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button th:each="i : ${#numbers.sequence(1, (curPageSlice==lastPageSlice ? list.totalPages%10 : 10))}" th:onclick="|pageChange(${((curPageSlice)*10+i)-1})|"
+           class="btn btn-default  btn-sm" th:classappend="${(curPageNumber%10 == 0 ? 10 : curPageNumber%10) == i ? 'active' : ''}">
+            [[${(curPageSlice)*10+i}]]
+        </button>
+        <button th:if="${isNext}" th:onclick="|pageChange(${nextPageNumber})|" class="btn btn-default btn-sm">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <button th:if="${curPageSlice != lastPageSlice}" th:onclick="|pageChange(${list.totalPages-1})|" class="btn btn-default btn-sm">
+            <i class="fas fa-angle-double-right"></i>
+        </button>
+    </div>
+    
+    <script th:inline="javascript">
+        function pageChange(page){
+            /*<![CDATA[*/
+            var formId = /*[[${formId}]]*/ '';
+            /*]]*/
+            $("#page").val(page);
+            $("#"+formId).submit();
+        }
+    </script>
+</th:block>
+
+<th:block th:fragment="pageInfo">
+    <div class="row page-info">
+        <div class="col-md-6">
+            <h6 class="m-0 font-weight-bold text-primary list-inline-item">총데이터</h6>
+            <strong class="ml-2 list-inline-item mr-0" th:text="${#numbers.formatInteger(list.totalElements, 1, 'COMMA')}"></strong>건
+            <span class="page"><strong th:text="${list.pageable.pageNumber+1}"></strong> / <span th:text="${list.totalPages}"></span></span>
+            <span class="text-blind">page</span>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control" name="size" onchange="sizeChange()">
+                <option value="20" th:selected="${list.pageable.pageSize==20}">20건</option>
+                <option value="40" th:selected="${list.pageable.pageSize==40}">40건</option>
+                <option value="60" th:selected="${list.pageable.pageSize==60}">60건</option>
+                <option value="80" th:selected="${list.pageable.pageSize==80}">80건</option>
+                <option value="100" th:selected="${list.pageable.pageSize==100}">100건</option>
+            </select>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        function sizeChange(){
+            /*<![CDATA[*/
+            var formId = /*[[${formId}]]*/ '';
+            /*]]*/
+            $("#page").val(0);
+            $("#"+formId).submit();
+        }
+    </script>
+</th:block>
+</html>

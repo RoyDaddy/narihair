@@ -1,0 +1,91 @@
+spring:
+  profiles:
+    active: dev
+server:
+  port: 8080
+---
+spring:
+  profiles: dev
+  main:
+    allow-bean-definition-overriding: true
+    
+  devtools:
+    livereload:
+      enabled: true
+
+  thymeleaf:
+    cache: false
+
+  freemarker:
+    cache: false
+    
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://leaders-developdb.cko98dkl5suj.ap-northeast-2.rds.amazonaws.com:3306/dh?autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: 'leaders'
+    password: '!Leaders34'
+    
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    password: pass
+    properties:
+      mail:
+        smtp: 
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+file:
+  uploadDir: C:/file_storage
+
+---
+spring:
+  profiles: prod
+  main:
+    allow-bean-definition-overriding: true
+
+  devtools:
+    livereload:
+      enabled: true
+
+  freemarker:
+    cache: false
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dh?autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: 'user'
+    password: 'user'
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    password: pass
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+file:
+  uploadDir: C:/file_storage
