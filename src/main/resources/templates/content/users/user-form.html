@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout/none-layout">
+
+<body class="bg-gradient-primary">
+<form id="form2">
+    <input type="hidden" name="seq" th:field="*{vo.seq}">
+    <div class="container-fluid">
+        <div class="card shadow mb-4 p-3">
+            <div class="row mb-4">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="i1" class="f-b">이름</label>
+                        <input class="form-control" th:field="*{vo.name}" type="text" id="i1"/>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="i2" class="f-b">연락처</label>
+                        <input class="form-control" th:field="*{vo.phone}" type="text" id="i2"/>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="i3" class="f-b">메모</label>
+                        <textarea class="form-control" id="i3" th:field="*{vo.memo}"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

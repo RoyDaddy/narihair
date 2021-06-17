@@ -45,7 +45,7 @@ public class ExceptionHandlingController implements ErrorController {
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return "error";
     }
 }
 

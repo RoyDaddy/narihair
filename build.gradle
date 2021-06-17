@@ -18,6 +18,11 @@ configurations {
 	}
 }
 
+bootJar {
+	archivesBaseName="${rootProject.name}"
+	project.version=""
+}
+
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
 

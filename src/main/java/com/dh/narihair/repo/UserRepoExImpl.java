@@ -48,6 +48,7 @@ public class UserRepoExImpl implements UserRepoEx{
         JPAQuery<UserDTO> query = null;
         query = factory.select(
                     Projections.fields(UserDTO.class,
+                            user.seq,
                             user.name,
                             user.phone,
                             user.memo,
@@ -63,6 +64,7 @@ public class UserRepoExImpl implements UserRepoEx{
                 .from(user)
                 .where(where)
                 .offset(page.getOffset())
+                .orderBy(user.seq.desc())
                 .limit(page.getPageSize());
 
         QueryResults<UserDTO> result = query.fetchResults();

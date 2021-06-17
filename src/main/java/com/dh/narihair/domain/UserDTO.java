@@ -16,6 +16,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class UserDTO implements Serializable {
+    long seq;
     String name;
     String phone;
     String memo;

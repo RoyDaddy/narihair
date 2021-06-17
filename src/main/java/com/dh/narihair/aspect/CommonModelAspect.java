@@ -3,6 +3,7 @@ package com.dh.narihair.aspect;
 import com.dh.narihair.entity.Admin;
 import com.dh.narihair.repo.AdminRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,6 +16,7 @@ import org.springframework.ui.ModelMap;
 @Aspect
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CommonModelAspect {
     final private AdminRepo adminRepo;
 
@@ -22,7 +24,7 @@ public class CommonModelAspect {
     public Object commonModelSet(ProceedingJoinPoint joinPoint) throws Throwable{
         Object[] args = joinPoint.getArgs();
         String methodName = joinPoint.getSignature().getName();
-
+        log.debug("methodName : {}",methodName);
         if(!methodName.equals("loginPage")) {
             ModelMap modelMap = null;
             int pos = 0;

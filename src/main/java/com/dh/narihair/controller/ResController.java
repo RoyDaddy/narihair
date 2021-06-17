@@ -10,6 +10,6 @@ public class ResController {
 
     @RequestMapping
     public String resMain(ModelMap model){
-        return "/content/res/index";
+        return "content/res/index";
     }
 }

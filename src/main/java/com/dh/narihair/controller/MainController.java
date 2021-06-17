@@ -21,6 +21,6 @@ public class MainController {
 
 	@RequestMapping("/main")
 	public String main(ModelMap model) {
-		return "/content/main";
+		return "content/main";
 	}
 }
